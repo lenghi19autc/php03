@@ -1,4 +1,6 @@
 <?php 
+	require("../lib/controls.php");
+
 	$conn = mysqli_connect("localhost", "root", "", "n02") or die("Cannot connect to db: " . mysqli_connect_error());
 	mysqli_set_charset($conn, "utf8");
 
@@ -7,9 +9,9 @@
 		die("Error execute query: " . mysqli_error($conn));
 	}
 
-	while($row = mysqli_fetch_assoc($result)) {
-		echo($row["title"]);
-	}
+	printTable($result, 
+		["title" => "Title", 
+		"description" => "Description"]);
 
 	mysqli_close($conn);
 ?>
