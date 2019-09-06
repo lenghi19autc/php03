@@ -1,3 +1,4 @@
+<a href="cat_add.php">Add</a>
 <?php 
 	require("../lib/controls.php");
 
