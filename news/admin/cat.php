@@ -2,10 +2,11 @@
 <?php 
 	require("../lib/controls.php");
 	require("../lib/db.php");
+	require("../lib/cat_service.php");
 
 	$conn = db_connect();
 
-	$result = db_query($conn, "SELECT * FROM cat");
+	$result = getAllCat($conn);
 
 	printTable($result, 
 		["title" => "Title", 
