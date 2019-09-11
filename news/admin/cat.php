@@ -12,7 +12,8 @@
 
 	printTable($result, 
 		["title" => "Title", 
-		"description" => "Description"]);
+		"description" => "Description"],
+		"edit_cat.php");
 
 	mysqli_close($conn);
 ?>
