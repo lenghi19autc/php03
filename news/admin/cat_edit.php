@@ -1,8 +1,8 @@
 <a href="cat.php">Back to list</a>
 <?php 
 	require("../lib/db.php");
-	
-	$conn = connect();
+
+	$conn = db_connect();
 
 	$id = $_GET["id"];
 
@@ -10,22 +10,14 @@
 		$title = $_POST["title"];
 		$description = $_POST["description"];
 
-		$result = mysqli_query($conn, "UPDATE `cat` SET `title`='$title',`description`='$description' WHERE id = $id");
-		if(!$result) {
-			die("Error execute query: " . mysqli_error($conn));
-		}
-		else {
-			echo("Tin sửa thành công");
-		}
+		db_query($conn, "UPDATE `cat` SET `title`='$title',`description`='$description' WHERE id = $id");
+		
+		echo("Tin sửa thành công");
 	}
 
-	$result = mysqli_query($conn, "SELECT * FROM cat WHERE id = $id");
-	if(!$result) {
-		die("Error execute query: " . mysqli_error($conn));
-	}
-	$row = mysqli_fetch_assoc($result);
-
-	mysqli_close($conn);
+	$row = db_single($conn, "SELECT * FROM cat WHERE id = $id");
+	
+	db_close($conn);
 ?>
 <form method="POST">
 	<table>

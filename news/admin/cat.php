@@ -3,17 +3,14 @@
 	require("../lib/controls.php");
 	require("../lib/db.php");
 
-	$conn = connect();
+	$conn = db_connect();
 
-	$result = mysqli_query($conn, "SELECT * FROM cat");
-	if(!$result) {
-		die("Error execute query: " . mysqli_error($conn));
-	}
+	$result = db_query($conn, "SELECT * FROM cat");
 
 	printTable($result, 
 		["title" => "Title", 
 		"description" => "Description"],
 		"cat_edit.php");
 
-	mysqli_close($conn);
+	db_close($conn);
 ?>

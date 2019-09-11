@@ -6,15 +6,11 @@
 		$title = $_POST["title"];
 		$description = $_POST["description"];
 
-		$conn = connect();
+		$conn = db_connect();
 
-		$result = mysqli_query($conn, "INSERT INTO `cat`(`title`, `description`) VALUES ('$title', '$description')");
-		if(!$result) {
-			die("Error execute query: " . mysqli_error($conn));
-		}
-		else {
-			echo("Tin '$title' thêm thành công");
-		}
+		$result = db_query($conn, "INSERT INTO `cat`(`title`, `description`) VALUES ('$title', '$description')");
+		
+		echo("Tin '$title' thêm thành công");
 
 		mysqli_close($conn);
 	}
