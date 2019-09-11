@@ -13,7 +13,7 @@
 	printTable($result, 
 		["title" => "Title", 
 		"description" => "Description"],
-		"edit_cat.php");
+		"cat_edit.php");
 
 	mysqli_close($conn);
 ?>
