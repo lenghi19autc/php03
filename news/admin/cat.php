@@ -1,9 +1,9 @@
 <a href="cat_add.php">Add</a>
 <?php 
 	require("../lib/controls.php");
+	require("../lib/db.php");
 
-	$conn = mysqli_connect("localhost", "root", "", "n02") or die("Cannot connect to db: " . mysqli_connect_error());
-	mysqli_set_charset($conn, "utf8");
+	$conn = connect();
 
 	$result = mysqli_query($conn, "SELECT * FROM cat");
 	if(!$result) {

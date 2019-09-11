@@ -1,11 +1,12 @@
 <a href="cat.php">Back to list</a>
 <?php 
+	require("../lib/db.php");
+
 	if(isset($_POST["add"])) {
 		$title = $_POST["title"];
 		$description = $_POST["description"];
 
-		$conn = mysqli_connect("localhost", "root", "", "n02") or die("Cannot connect to db: " . mysqli_connect_error());
-		mysqli_set_charset($conn, "utf8");
+		$conn = connect();
 
 		$result = mysqli_query($conn, "INSERT INTO `cat`(`title`, `description`) VALUES ('$title', '$description')");
 		if(!$result) {

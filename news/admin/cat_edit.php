@@ -1,7 +1,8 @@
 <a href="cat.php">Back to list</a>
 <?php 
-	$conn = mysqli_connect("localhost", "root", "", "n02") or die("Cannot connect to db: " . mysqli_connect_error());
-	mysqli_set_charset($conn, "utf8");
+	require("../lib/db.php");
+	
+	$conn = connect();
 
 	$id = $_GET["id"];
 
