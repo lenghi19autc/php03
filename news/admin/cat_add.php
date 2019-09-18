@@ -1,14 +1,14 @@
 <a href="cat.php">Back to list</a>
 <?php 
 	require("../lib/db.php");
+	require("../lib/cat_service.php");
 
 	if(isset($_POST["add"])) {
-		$title = $_POST["title"];
-		$description = $_POST["description"];
-
 		$conn = db_connect();
 
-		$result = db_query($conn, "INSERT INTO `cat`(`title`, `description`) VALUES ('$title', '$description')");
+		createCat($conn, 
+			escapePostParam($conn, "title"), 
+			escapePostParam($conn,"description"));
 		
 		echo("Tin '$title' thêm thành công");
 

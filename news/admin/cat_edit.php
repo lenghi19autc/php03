@@ -1,23 +1,21 @@
 <a href="cat.php">Back to list</a>
 <?php 
-	require("../lib/db.php");
+	require_once("../lib/db.php");
+	require("../lib/cat_service.php");
 
 	$conn = db_connect();
 
-	$id = $_GET["id"];
+	$id = escapeGetParam($conn, "id");
 
 	if(isset($_POST["edit"])) {
-		$title = $_POST["title"];
-		$description = $_POST["description"];
-
-		db_query($conn, "UPDATE `cat` SET `title`='$title',`description`='$description' WHERE id = $id");
+		updateCat($conn, $id, 
+			escapePostParam($conn, "title"), 
+			escapePostParam($conn, "description"));
 		
 		echo("Tin sửa thành công");
 	}
 
-	$row = db_single($conn, "SELECT * FROM cat WHERE id = $id");
-	
-	db_close($conn);
+	$row = getCat($conn, $id);
 ?>
 <form method="POST">
 	<table>
@@ -31,7 +29,17 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td><input type="submit" name="edit" value="Edit"></td>
+			<td>
+				<input type="submit" name="edit" value="Edit">
+				<?php 
+					$newsCount = newsCountOfCat($conn, $id);
+					if($newsCount == 0) {
+						echo("<a href='cat_delete.php?id=$id' onclick=\"confirm('Are you sure?')\">Delete</a>");
+					}
+					db_close($conn);
+				 ?>
+			</td>
 		</tr>
 	</table>	
 </form>
+

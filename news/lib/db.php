@@ -30,4 +30,13 @@ function db_close($conn) {
 	mysqli_close($conn);
 }
 
+function escapePostParam($conn, $key) {
+	return mysqli_real_escape_string($conn, $_POST[$key]);
+}
+
+function escapeGetParam($conn, $key) {
+	return mysqli_real_escape_string($conn, $_GET[$key]);
+}
+
+
 ?>

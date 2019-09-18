@@ -1,12 +1,12 @@
 <a href="cat_add.php">Add</a>
 <?php 
 	require("../lib/controls.php");
-	require("../lib/db.php");
+	require_once("../lib/db.php");
 	require("../lib/cat_service.php");
 
 	$conn = db_connect();
 
-	$result = getAllCat($conn);
+	$result = getAllCat($conn);;
 
 	printTable($result, 
 		["title" => "Title", 
